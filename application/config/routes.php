@@ -57,7 +57,8 @@ $route['translate_uri_dashes'] = FALSE;
 /* ======================== Minhas rotas ========================= */
 
 $route['empresas']['GET'] = 'empresas/index';
-$route['empresas']['POST'] = 'empresas/create';
+// $route['empresas/cadastro']['GET'] = 'empresas/create';
+// $route['empresas']['POST'] = 'empresas/store';
 $route['empresas/(:num)']['GET'] = 'empresas/show/$1';
 $route['empresas/(:num)']['DELETE'] = 'empresas/destroy/$1';
 

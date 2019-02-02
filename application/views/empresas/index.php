@@ -5,64 +5,67 @@
 ?>
 
 <h1 class="titulo-empresas">Empresas</h1>
+<div class="container">
+    <a href="/empresas/cadastro" class="btn btn-cadastro">Cadastrar Nova Empresa</a>
+</div>
 
+<div class="wrap">
+    <table class="empresas container">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CNPJ</th>
+                <th>E-mail</th>  
+                <th>Ações</th> 
+            </tr>
+        </thead>
 
-<table class="empresas">
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>CNPJ</th>
-            <th>E-mail</th>  
-            <th>Ações</th> 
-        </tr>
-    </thead>
+        <tbody>
+            <?php foreach ($empresas as $empresa): ?>
 
-    <tbody>
-        <tr>
-            <td>Empresa 1</td>
-            <td>22.55.66.77-555</td>
-            <td>empresa1@mail.com</td>
-            <td></td>
-        </tr>
+                <tr>
+                    <td><?=  $empresa['name'] ?></td>
+                    <td><?=  $empresa['cnpj'] ?></td>
+                    <td><?=  $empresa['email'] ?></td>
+                    <td>
+                        <a href="" class="btn btn-alterar">Alterar</a>
+                        <a href="" class="btn btn-excluir">Excluir</a>
+                    </td>
+                </tr>
 
-        <tr>
-            <td>Empresa 2</td>
-            <td>88.99.66.24.-481</td>
-            <td>empresa2@mail.com</td>
-            <td></td>
-        </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+<div class="container page">
+    <div class="pagination">
+        <?= $this->pagination->create_links(); ?>
+    </div>
+</div>
 
-        <tr>
-            <td>Empresa 3</td>
-            <td>65.74.11.52.-963</td>
-            <td>empresa3@mail.com</td>
-            <td></td>
-        </tr>
-
-        <tr>
-            <td>Empresa 4</td>
-            <td>98.74.47.14-256</td>
-            <td>empresa4@mail.com</td>
-            <td></td>
-        </tr>
-    </tbody>
-</table>
 
 <style>
 
     .titulo-empresas {
         text-align: center;
         font-size: 3em;
-        color: #222;
+        color: #aaa;
         margin: 40px 0;
+    }
+
+    .wrap {
+        overflow: auto;
+        max-width: 100%;
+        margin-bottom: 100px;
     }
 
     .empresas {
         font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
         border-collapse: collapse;
         width: 100%;
-        max-width: 100%;
-        margin-bottom: 60px;
+        min-width: 600px;
+       
+       
         
     }
 
@@ -82,6 +85,38 @@
     .empresas td {
         padding: 15px 0 15px 15px;
         overflow: auto;
+    }
+
+    .btn {
+        width: 120px;
+        padding: 10px;
+        border-radius: 5px;
+        color: #fff;
+    }
+
+    .btn-alterar {
+        background-color: #2778f9;
+    }
+
+    .btn-excluir {
+        background-color: #e82727;
+    }
+
+    .btn-cadastro {
+        background-color: #46b716;
+        display: inline-block;
+        width: 220px !important;
+        margin-bottom: 20px;
+ 
+    }
+
+    .pagination a, strong {
+        padding: 10px;
+        
+        
+    }
+    .page {
+        margin-bottom: 20px;
     }
 
 

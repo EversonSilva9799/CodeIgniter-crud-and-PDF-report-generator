@@ -1,21 +1,21 @@
 <?php
 
-function active($item, $uri) {
-    return $uri->segment(1) == $item? 'class="active"' : null;
-}
+// function active($item, $uri) {
+//     return $uri->segment(1) == $item? 'class="active"' : null;
+// }
 ?>
 
 <header class="header">
     <div class="container">
         <div class="logo grid-6">
-            <a href="/">Administração</a>
+            <a href="/">Admin</a>
         </div>
 
         <nav class="menu grid-6">
             <ul>
-                <li <?=active('', $this->uri)?>><a href="/">Home</a></li>
-                <li <?=active('empresas', $this->uri)?>><a href="/empresas">Empresas</a></li>
-                <li <?=active('colaboradores', $this->uri)?>><a href="/colaboradores">Colaboradores</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/empresas">Empresas</a></li>
+                <li><a href="/colaboradores">Colaboradores</a></li>
             </ul>
         </nav>
     </div>
@@ -51,6 +51,7 @@ function active($item, $uri) {
 
 .menu ul li a {
     color: #fff;
+    font-size: 1.4em;
     padding: 10px;
 }
 

@@ -12,6 +12,7 @@
     width: 100%;
     padding: 25px 0;
     background-color: #2679ff;
+    color: #fff;
 }
 
 .footer p {
