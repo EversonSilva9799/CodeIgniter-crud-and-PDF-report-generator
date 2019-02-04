@@ -27,4 +27,12 @@
     text-align: right;
 }
 
+@media only screen and (max-width: 780px) {
+
+    .footer h2, .footer p {
+    text-align: center;
+}
+
+}
+
 </style>

@@ -6,7 +6,8 @@
 
 <h1 class="titulo-empresas">Empresas</h1>
 <div class="container">
-    <a href="/empresas/cadastro" class="btn btn-cadastro">Cadastrar Nova Empresa</a>
+    <a href="/empresas/cadastro" class="btn btn-cadastro">Nova Empresa</a>
+    <a href="/empresas/relatorio" class="btn btn-relatorio">Gerar Relatório</a>
 </div>
 
 <div class="wrap">
@@ -24,12 +25,12 @@
             <?php foreach ($empresas as $empresa): ?>
 
                 <tr>
-                    <td><?=  $empresa['name'] ?></td>
-                    <td><?=  $empresa['cnpj'] ?></td>
-                    <td><?=  $empresa['email'] ?></td>
+                   <td><a href="empresas/<?= $empresa->id_empresa?>"><?= $empresa->nome ?></a></td>
+                    <td><?=  $empresa->cnpj ?></td>
+                    <td><?=  $empresa->email ?></td>
                     <td>
-                        <a href="" class="btn btn-alterar">Alterar</a>
-                        <a href="" class="btn btn-excluir">Excluir</a>
+                        <a href="/empresas/editar/<?= $empresa->id_empresa?>" class="btn btn-alterar">Alterar</a>
+                        <a href="/empresas/excluir/<?= $empresa->id_empresa?>" class="btn btn-excluir">Excluir</a>
                     </td>
                 </tr>
 
@@ -105,9 +106,16 @@
     .btn-cadastro {
         background-color: #46b716;
         display: inline-block;
-        width: 220px !important;
+        width: 150px !important;
         margin-bottom: 20px;
  
+    }
+
+    .btn-relatorio {
+        background-color: #46b716;
+        display: inline-block;
+        width: 160px !important;
+        margin-bottom: 20px;
     }
 
     .pagination a, strong {

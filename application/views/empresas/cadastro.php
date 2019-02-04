@@ -11,9 +11,9 @@
     </div>
 </div>
 
-    <form action="/empresas/cadastro" method="post" class="form-empresa">
+<form action="/empresas/cadastro" method="post" class="form-empresa">
     <label for="name">Nome:</label>
-    <input type="text" placeholder="Nome" name="name" value="<?= set_value('name') ?>">
+    <input type="text" placeholder="Nome" name="nome" value="<?= set_value('name') ?>">
 
     <label for="name">CNPJ:</label>
     <input type="text" placeholder="CNPJ" name="cnpj" value="<?= set_value('cnpj') ?>">
@@ -21,7 +21,7 @@
     <label for="name">E-mail:</label>
     <input type="text" placeholder="E-mail" name="email" value="<?= set_value('email') ?>">
     <input type="submit" value="Cadastrar">
-    </form>
+</form>
     
 
 
@@ -34,6 +34,7 @@
 
 .form-empresa {
     width: 500px;
+    max-width: calc(100% - 20px);
     margin: 0 auto;
     margin-top: 40px;
     margin-bottom: 220px;

@@ -13,7 +13,7 @@
 			<a href="/empresas">
 				<li class="grid-4 options-item">
 					<h2>Empresas</h2>
-					<h2>13</h2>
+					<h2><?= $totalEmpresas ?></h2>
 					<img src="" alt="">
 				</li>
 			</a>

@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
@@ -57,12 +57,12 @@ $route['translate_uri_dashes'] = FALSE;
 /* ======================== Minhas rotas ========================= */
 
 $route['empresas']['GET'] = 'empresas/index';
-// $route['empresas/cadastro']['GET'] = 'empresas/create';
-// $route['empresas']['POST'] = 'empresas/store';
 $route['empresas/(:num)']['GET'] = 'empresas/show/$1';
-$route['empresas/(:num)']['DELETE'] = 'empresas/destroy/$1';
+$route['empresas/excluir/(:num)'] = 'empresas/delete/$1';
 
 $route['colaboradores']['GET'] = 'colaboradores/index';
 $route['colaboradores']['POST'] = 'colaboradores/create';
 $route['colaboradores/(:num)']['GET'] = 'colaboradores/show/$1';
 $route['colaboradores/(:num)']['DELETE'] = 'colaboradores/destroy/$1';
+
+$route['empresas/relatorio']['GET'] = 'empresasrelatorio';

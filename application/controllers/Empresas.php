@@ -4,54 +4,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Empresas extends CI_Controller {
 
 
-    public function index($page=1)
+    public function index($page=0)
     {
-        $empresas = [
 
-            [
-                'id' => '1',
-                'name' => 'IMB',
-                'cnpj' => '54.78.62-956',
-                'email' => 'ibm@mail.com'
-            ],
-            [
-                'id' => '2',
-                'name' => 'Microsoft',
-                'cnpj' => '32.41.65-985',
-                'email' => 'microsoft@mail.com'
-            ],
-            [
-                'id' => '3',
-                'name' => 'Google',
-                'cnpj' => '65.74.52-125',
-                'email' => 'google@mail.com'
-            ],
-            [
-                'id' => '4',
-                'name' => 'Apple',
-                'cnpj' => '65.74.85-956',
-                'email' => 'apple@mail.com'
-            ],
-            [
-                'id' => '5',
-                'name' => 'Intel',
-                'cnpj' => '52.41.59-986',
-                'email' => 'intel@mail.com'
-            ],
-            [
-                'id' => '6',
-                'name' => 'Facebook',
-                'cnpj' => '51.63.74-485',
-                'email' => 'facebook@mail.com'
-            ],
-        
-        ];
+        $this->load->database();
+        $this->load->model('empresa');
+
+        $empresas = $this->empresa->getAll(5, $page);
 
         $this->load->library('pagination');
 
         $this->pagination->initialize([
-            'total_rows' => 6,
-            'per_page' => 2,
+            'total_rows' => $this->db->count_all('empresas'),
+            'per_page' => 5,
             'base_url' => '/empresas/index',
             'first_link' => 'Primeiro',
             'last_link' => 'Último'
@@ -62,27 +27,43 @@ class Empresas extends CI_Controller {
         ]);
     }
 
+    /*Exibe detalhes de uma empresa */
     public function show($id)
-    {
-        echo "Retorna os dados da empresa de código ".$id;
+    {   
+      
+        $this->load->model('empresa');
+        $empresa = $this->empresa->get($id);
+
+        $this->load->view('empresas/show', ['empresa' => $empresa]);
     }
 
+
+    /**
+     * Cadastra uma nova empresa no sistema
+     */
     public function cadastro()
     {
+       
+        $this->load->model('empresa');
+        
 
         $this->load->helper(['form', 'url']);
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('name', 'Name', 'required|min_length[8]');
+        $this->form_validation->set_rules('nome', 'Name', 'required|min_length[1]');
         $this->form_validation->set_rules('cnpj', 'CNPJ', 'required');
         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 
-        if($this->form_validation->run() == false) { 
-            $this->load->view('empresas/cadastro');
-  
+        if(!$this->form_validation->run()) { 
+            $this->load->view('empresas/cadastro'  );
         }
         else {
-           print_r( $this->input->post());
+            $insert = $this->empresa->insert($this->input->post());
+
+
+           if ($insert) {
+               header("LOCATION: /empresas");
+           }
 
         }
 
@@ -90,8 +71,19 @@ class Empresas extends CI_Controller {
     }
 
 
-    public function destroy($id)
+    public function delete($id)
     {
+        $this->load->helper('url');
+        $this->load->model('empresa');
+
+        if($this->empresa->delete($id)) {
+            header("LOCATION: /empresas");
+        }
+        else {
+            show_error('Erro ao excluir');
+        }
+
+        
 
     }
 	
