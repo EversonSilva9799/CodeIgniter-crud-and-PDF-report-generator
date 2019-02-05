@@ -11,17 +11,17 @@
 		<ul>
 			
 			<a href="/empresas">
-				<li class="grid-4 options-item">
-					<h2>Empresas</h2>
-					<h2><?= $totalEmpresas ?></h2>
+				<li class="grid-6 options-item">
+					<h2 class="box">Empresas</h2>
+					<h2 class="total">n° <?= $totalEmpresas ?></h2>
 					<img src="" alt="">
 				</li>
 			</a>
 
 			<a href="/colaboradores">
-				<li class="grid-4 options-item">
-					<h2>Colaboradores</h2>
-					<h2>42</h2>
+				<li class="grid-6 options-item">
+					<h2 class="box" >Colaboradores</h2>
+					<h2 class="total">n° <?= $totalColaboradores ?></h2>
 					<img src="" alt="">
 				</li>
 			</a>	
@@ -31,6 +31,10 @@
 </section>
 
 <style>
+	.options {
+		margin-bottom: 150px;
+		
+	}
 
 	.options-titulo {
 		text-align: center;
@@ -39,12 +43,31 @@
 	}
 
 	.options-item {
-		border: 1px solid rgba(0,0,0,0.4);
-		margin-bottom: 	150px;
+		
+		text-align: center;
+		margin-bottom: 	10px;
 		padding: 50px 20px 50px 20px;
-		background-color: rgba(4,61,155, 0.5);
 		border-radius: 5px;
 		color: #fff;
+	}
+
+	
+
+	.options-item .box {
+		text-transform: uppercase;
+		border-bottom: 2px solid #2679ff;
+		margin-bottom: 5px;
+		padding-bottom: 10px;
+		font-size: 1.2em;
+		color: #000;	
+	}
+
+	.box:hover {
+		text-decoration: underline;
+	}
+
+	.total {
+		color: #000;
 	}
 
 

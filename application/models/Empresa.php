@@ -19,7 +19,7 @@ class Empresa extends CI_Model
 
     public function getAll($per_page, $page)
     {
-        return $empresa = $this->db->get($this->table, $per_page, $page)->result();
+        return $empresas = $this->db->get($this->table, $per_page, $page)->result();
     
     }
 
@@ -36,6 +36,16 @@ class Empresa extends CI_Model
     public function update(array $data, $id)
     {
         return $this->db->update($this->table, $data, ['id_empresa' => $id]);
+    }
+
+    /**
+     * Mapeamento de empresas com colaboradores
+     */
+    public function colaboradores($id)
+    {   
+        $colaboradores = $this->db->query(" SELECT DISTINCT colaboradores.nome, colaboradores.id_colaborador FROM colaboradores INNER JOIN empresas ON $id = colaboradores.empresa_id");
+        return $colaboradores->result();
+        
     }
 
 }

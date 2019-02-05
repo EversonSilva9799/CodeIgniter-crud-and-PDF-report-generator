@@ -63,6 +63,7 @@ $route['empresas/excluir/(:num)'] = 'empresas/delete/$1';
 $route['colaboradores']['GET'] = 'colaboradores/index';
 $route['colaboradores']['POST'] = 'colaboradores/create';
 $route['colaboradores/(:num)']['GET'] = 'colaboradores/show/$1';
-$route['colaboradores/(:num)']['DELETE'] = 'colaboradores/destroy/$1';
+$route['colaboradores/excluir/(:num)']= 'colaboradores/delete/$1';
 
 $route['empresas/relatorio']['GET'] = 'empresasrelatorio';
+$route['colaboradores/relatorio']['GET'] = 'colaboradoresrelatorio';

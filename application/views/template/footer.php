@@ -1,6 +1,6 @@
 <footer class=footer>
     <div class="container">
-        <p class="grid-6">Sistema de administração da empresa</p>
+        <p class="grid-6">Sistema de administração da empresa - By Everson Silva</p>
         <h2 class="grid-6">Administração</h2>
     </div>
 </footer>

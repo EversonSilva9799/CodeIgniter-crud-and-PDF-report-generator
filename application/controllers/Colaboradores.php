@@ -29,6 +29,12 @@ class Colaboradores extends CI_Controller {
     public function show($id)
     {
 
+        $this->load->model('colaborador');
+
+        $empresa = $this->colaborador->empresa($id);
+        print_r($empresa);
+        exit;
+
     }
 
     public function cadastro()
@@ -66,9 +72,22 @@ class Colaboradores extends CI_Controller {
 
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
-        
+
+        $this->load->model('colaborador');
+
+        $deleted = $this->colaborador->delete($id);
+
+        if ($deleted) {
+            //criar uma sessão
+            header('LOCATION: /colaboradores');
+        }
+        else {
+             //criar uma sessão
+             header('LOCATION: /colaboradores');
+        }
+           
     }
 	
 }

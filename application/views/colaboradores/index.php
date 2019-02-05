@@ -32,7 +32,7 @@
                     <td><?= $colaborador->sexo == "M" ? "Masculino" : "Feminino" ?></td>
                     <td>
                         <a href="" class="btn btn-alterar">Alterar</a>
-                        <a href="" class="btn btn-excluir">Excluir</a>
+                        <a href="/colaboradores/excluir/<?= $colaborador->id_colaborador ?>" class="btn btn-excluir">Excluir</a>
                     </td>
                 </tr>
             <?php endforeach; ?>  
@@ -105,7 +105,7 @@
     .btn-cadastro {
         background-color: #46b716;
         display: inline-block;
-        width: 220px !important;
+        width: 180px !important;
         margin-bottom: 20px;
  
     }

@@ -66,7 +66,7 @@
 
     .menu ul {
         float: none; 
-        margin: 0 auto;
+        margin: 20px auto 0 auto;
 }
 
     .menu ul li a {

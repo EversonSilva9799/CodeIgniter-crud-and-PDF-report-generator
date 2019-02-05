@@ -27,7 +27,7 @@
     <select name="sexo" class="sexo">
         <option disabled selected>Sexo</option>
         <option value="M">Masculino</option>
-        <option value="N">Feminino</option>
+        <option value="F">Feminino</option>
     </select>
 
     <label class="label-empresa" for="empresa_id">Selecione a Empresa:</label>

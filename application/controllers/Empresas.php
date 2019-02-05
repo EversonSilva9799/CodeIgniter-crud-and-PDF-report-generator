@@ -7,8 +7,12 @@ class Empresas extends CI_Controller {
     public function index($page=0)
     {
 
+
+
         $this->load->database();
         $this->load->model('empresa');
+
+        
 
         $empresas = $this->empresa->getAll(5, $page);
 
@@ -34,7 +38,12 @@ class Empresas extends CI_Controller {
         $this->load->model('empresa');
         $empresa = $this->empresa->get($id);
 
-        $this->load->view('empresas/show', ['empresa' => $empresa]);
+        $colaboradores = $this->empresa->colaboradores($id);
+
+        $this->load->view('empresas/show', [
+            'empresa' => $empresa,
+            'colaboradores' => $colaboradores
+        ]);
     }
 
 
