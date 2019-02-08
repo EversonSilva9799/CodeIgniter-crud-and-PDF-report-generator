@@ -10,7 +10,7 @@ class Migration_Create_Colaboradores extends CI_Migration
             ],
             'empresa_id' => [
                 'type' => 'INT',
-                'null' => TRUE
+                'null' => TRUE,
             ],
             'nome' => [
                 'type' => 'varchar',

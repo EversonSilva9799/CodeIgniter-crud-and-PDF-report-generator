@@ -19,7 +19,7 @@
                 <td><?= $colaborador->nome ?></td>
                 <td><?=  $colaborador->email ?></td>
                 <td><?=  $colaborador->cpf ?></td>
-                <td><?=  $colaborador->sexo ?></td>
+                <td><?=  $colaborador->sexo === 'M' ? 'Masculino' : 'Feminino' ?></td>
             </tr>
 
         <?php endforeach; ?>

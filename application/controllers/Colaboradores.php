@@ -6,15 +6,14 @@ class Colaboradores extends CI_Controller {
 
     public function index($page=0)
     {
-        $this->load->database();
-
-        $colaboradores = $this->db->get('colaboradores','5' , $page)->result();
-
+        $this->load->model('colaborador');
         $this->load->library('pagination');
-        
+
+        $colaboradores = $this->colaborador->getPaginate(7 , $page);
+
         $this->pagination->initialize([
             'total_rows' => $this->db->count_all('colaboradores'),
-            'per_page' => 5,
+            'per_page' => 7,
             'base_url' => '/colaboradores/index',
             'first_link' => 'Primeiro',
             'last_link' => 'Último'
@@ -28,12 +27,23 @@ class Colaboradores extends CI_Controller {
 
     public function show($id)
     {
-
         $this->load->model('colaborador');
+        
+        $colaborador = $this->colaborador->get($id);
 
-        $empresa = $this->colaborador->empresa($id);
-        print_r($empresa);
-        exit;
+        if (!$colaborador) {
+            $this->session->set_flashdata('error' , 'Não foi possível realizar esta ação. Possivelmente esse colaborador não existe');
+            redirect(base_url('index.php/colaboradores'));
+        }
+        $empresa = "";
+        if($colaborador->empresa_id) {
+           // Empresa a qual àquele cliente está associado
+            $empresa = $this->colaborador->empresa($colaborador->empresa_id); 
+        }
+        $this->load->view('colaboradores/show', [
+            'colaborador' => $colaborador,
+            'empresa' => $empresa
+            ]);
 
     }
 
@@ -41,35 +51,70 @@ class Colaboradores extends CI_Controller {
     {   
         
         $this->load->helper(['form', 'url']);
-        $this->load->library('form_validation');
-        $this->load->database();
-
-        //Pegando a empresa para o colaborador poder escolher uma
-        $this->db->select('id_empresa, nome');
-        $empresas = $this->db->get('empresas')->result();
+        $this->load->model(['colaborador', 'empresa']);
         
+        //Pegando a empresa para o colaborador poder escolher uma
+        $empresas = $this->empresa->getAll();
 
-        $this->form_validation->set_rules('nome', 'Nome', 'trim|required|max_length[50]|min_length[4]');
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|max_length[50]|min_length[4]');
-        $this->form_validation->set_rules('cpf', 'CPF', 'trim|required|min_length[11]|max_length[11]');
-        $this->form_validation->set_rules('sexo', 'Sexo', 'trim|required|alpha|min_length[1]|max_length[1]');
-       // $this->form_validation->set_rules('empresa_id', 'Empresa');
-
-
-        if(!$this->form_validation->run()) { 
+        if(!$this->colaborador->validaForm()) { 
             $this->load->view('colaboradores/cadastro', [
                 'empresas' => $empresas
             ]);
         }
         else {
-           $insert = $this->db->insert('colaboradores', $this->input->post());
+           $insert = $this->colaborador->insert([
+               'nome' => $this->input->post('nome'),
+               'email' => $this->input->post('email'),
+               'cpf' => $this->input->post('cpf'),
+               'sexo' => $this->input->post('sexo'),
+               'empresa_id' => $this->input->post('empresa_id'),
+           ]);
 
            if ($insert) {
-               header("LOCATION: /colaboradores");
+            $this->session->set_flashdata('success', 'Colaborador cadastrado');
+            redirect(base_url('index.php/colaboradores'));
            }
 
         }
 
+    }
+
+    public function update($id)
+    {
+        $this->load->helper(['form', 'url']);
+        $this->load->model(['colaborador', 'empresa']);
+        $this->load->database();
+
+        //Pegando a empresa para o colaborador poder escolher uma
+        $empresas = $this->empresa->getAll();
+
+        $colaborador = $this->colaborador->get($id);
+
+        if ($colaborador) {
+            if (!$colaborador->validaForm()) {
+                $this->load->view('colaboradores/update', [
+                    'colaborador' => $colaborador,
+                    'empresas' => $empresas
+                ]);
+            }
+            else 
+            {
+                $updated = $this->colaborador->update([
+                    'nome' => $this->input->post('nome'),
+                    'email' => $this->input->post('email'),
+                    'cpf' => $this->input->post('cpf'),
+                    'sexo' => $this->input->post('sexo'),
+                    'empresa_id' => $this->input->post('empresa_id')
+                ], $id);
+
+                if ( $updated ) {
+                    $this->session->set_flashdata('success', 'Colaborador atualizado');
+                    redirect(base_url('index.php/colaboradores'));
+                }
+                $this->session->set_flashdata('error', 'Não foi possível atualizar o colaborador');
+                redirect(base_url('index.php/colaboradores'));
+            }
+        }
     }
 
     public function delete($id)
@@ -77,15 +122,17 @@ class Colaboradores extends CI_Controller {
 
         $this->load->model('colaborador');
 
+        
+
         $deleted = $this->colaborador->delete($id);
 
         if ($deleted) {
-            //criar uma sessão
-            header('LOCATION: /colaboradores');
+            $this->session->set_flashdata('success', 'Colaborador deletado');
+            redirect(base_url('index.php/colaboradores'));
         }
         else {
-             //criar uma sessão
-             header('LOCATION: /colaboradores');
+            $this->session->set_flashdata('error', 'Colaborador não deletado');
+             redirect(base_url('index.php/colaboradores'));
         }
            
     }

@@ -4,33 +4,35 @@
 
 
 ?>
-<h1 class="detalhes">Detalhes da Empresa</h1>
+<h1 class="detalhes">Detalhes do Colaborador</h1>
 
-<section class="container empresa">
+<section class="container colaborador">
 
-<div class="dados-empresa grid-6">
+<div class="dados-colaborador grid-6">
     <div class="id-empresa">
-        <h2><?= $empresa->id_empresa?></h2>
+        <h2></h2>
     </div>
-    <h1>Empresa: <span><?= $empresa->nome ?></span></h1>
-    <h2>CNPJ: <span><?=  $empresa->cnpj ?></span></h2>
-    <h2>E-mail: <span><?=  $empresa->email ?></span></h2>
+    <h1>Nome: <span><?= $colaborador->nome ?></span></h1>
+    <h2>E-mail: <span><?=  $colaborador->email ?></span></h2>
+    <h2>CPF: <span><?=  $colaborador->cpf ?></span></h2>
+    <h2>Sexo: <span><?=  $colaborador->sexo ?></span></h2>
 </div>
 
 <div class="grid-6">
-    <div class="lista-colaboradores">
-        <h1>Colaboradores(<?= count($colaboradores) ?>)</h1>
-
-        <?php foreach($colaboradores as $colaborador): ?>
-            <h3 class="nome-colaborador"><a href="<?= base_url('index.php/colaboradores/') ?><?= $colaborador->id_colaborador?>"><?= $colaborador->nome ?></a></h3>
-        <?php endforeach; ?>
+    <div class="empresa">
+        <h1>Associado a empresa:</h1>
+        <?php if($colaborador->empresa_id): ?>
+            <h3 class="nome-empresa"><a href="<?= base_url('index.php/empresas/') ?><?= $empresa[0]->id_empresa?>"><?= $empresa[0]->nome?></a></h3>  
+        <?php else: ?>
+            <h3>Não associado</h3>
+        <?php endif; ?>   
     </div>
 </div>
 </section>
 
 <style>
 
-.empresa {
+.colaborador {
      
 }
 
@@ -39,14 +41,14 @@
     margin: 60px 0;
 }
 
-.id-empresa {
+.id-colaborador {
     width: 120px;
     border: 3px solid #2778f9;
     padding: 40px 0; 
     position: relative;
 }
 
-.id-empresa h2 {
+.id-colaborador h2 {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -54,7 +56,7 @@
     font-weight: 500;
 }
 
-.dados-empresa {
+.dados-colaborador {
     padding-left: 18px;
     border-left: 3px solid #2778f9;
     margin-bottom: 50px;
@@ -63,34 +65,34 @@
     top: 19px;
 }
 
-.dados-empresa h1 {
+.dados-colaborador h1 {
     margin-bottom: 5px;
 }
 
-.dados-empresa h2 {
+.dados-colaborador h2 {
     margin-bottom: 5px;
 }
 
-.dados-empresa span {
+.dados-colaborador span {
     font-weight: 500;
 }
 
-.lista-colaboradores {
+.empresa {
     float: right;
     height: 400px;
     overflow: auto;
 }
 
-.lista-colaboradores h1 {
+.empresa h1 {
     margin-bottom: 20px;
 }
 
-.nome-colaborador {
+.nome-empresa {
     margin-bottom: 8px;
     font-weight: 500;
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 780px) {
     .grid-6 {
         width: calc(100% - 20px);
         
@@ -100,27 +102,28 @@
         margin-bottom: 5px
     }
 
-
-    .dados-empresa{
-        text-align: center;
-        border: none;
-    }
-    .dados-empresa h1{
-        margin-top: 60px;
-    }
-
-    .id-empresa {
-        margin: 20px auto;
-        padding: 0;
-        text-align: center;
+    .id-colaborador {
+      
+        margin: 0 auto;
         border: none;
     }
 
-    .lista-colaboradores {
+    .dados-colaborador{
+        padding-left: 25px;
+        text-align: none;
+        border: none;
+    }
+
+    
+
+    .empresa {
         float: none;
         text-align: center;
     }
 }
+
+
+
 
 
 </style>

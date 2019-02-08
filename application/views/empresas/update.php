@@ -4,23 +4,23 @@
 
 ?>
 
-<h1 class="form-titulo">Cadastre uma Nova Empresa</h1>
+<h1 class="form-titulo">Atualizar dados da Empresa</h1>
 <div class="error">
     <div class="container">
         <?= validation_errors(); ?>
     </div>
 </div>
 
-<form action="<?= base_url('index.php/empresas/cadastro') ?>" method="post" class="form-empresa">
+<form action="<?= base_url('index.php/empresas/atualizar/') ?><?= $empresa->id_empresa ?>" method="post" class="form-empresa">
     <label for="name">Nome:</label>
-    <input type="text" placeholder="Nome" name="nome" value="<?= set_value('nome') ?>">
+    <input type="text" placeholder="Nome" name="nome" value="<?= $empresa->nome ?>">
 
     <label for="name">CNPJ:</label>
-    <input type="text" placeholder="CNPJ" name="cnpj" value="<?= set_value('cnpj') ?>">
+    <input type="text" placeholder="CNPJ" name="cnpj" value="<?= $empresa->cnpj ?>">
 
     <label for="name">E-mail:</label>
-    <input type="text" placeholder="E-mail" name="email" value="<?= set_value('email') ?>">
-    <input type="submit" value="Cadastrar">
+    <input type="text" placeholder="E-mail" name="email" value="<?= $empresa->email ?>">
+    <input type="submit" value="Atualizar">
 </form>
     
 

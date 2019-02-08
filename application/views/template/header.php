@@ -1,21 +1,15 @@
-<?php
-
-// function active($item, $uri) {
-//     return $uri->segment(1) == $item? 'class="active"' : null;
-// }
-?>
 
 <header class="header">
     <div class="container">
         <div class="logo grid-4">
-            <a href="/">Admin</a>
+            <a href="<?= base_url() ?>">Admin</a>
         </div>
 
         <nav class="menu grid-8">
             <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/empresas">Empresas</a></li>
-                <li><a href="/colaboradores">Colaboradores</a></li>
+                <li><a href="<?= base_url() ?>">Home</a></li>
+                <li><a href="<?= base_url('index.php/empresas') ?>">Empresas</a></li>
+                <li><a href="<?= base_url('index.php/colaboradores') ?>">Colaboradores</a></li>
             </ul>
         </nav>
     </div>
@@ -67,10 +61,11 @@
     .menu ul {
         float: none; 
         margin: 20px auto 0 auto;
+        text-align: center;
 }
 
     .menu ul li a {
-        font-size: 1em; 
+        font-size: 1.1em; 
         padding: 5px 5px;
     }
 }

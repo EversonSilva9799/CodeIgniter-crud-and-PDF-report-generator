@@ -2,9 +2,16 @@
     $this->load->view('template/head');
     $this->load->view('template/header');
 
+//    if($colaborador->empresa_id){
+//     echo 'existe';
+//     }
+//     else {
+//         echo 'não existe';
+//     }
+//     exit;
 ?>
 
-<h1 class="form-titulo">Cadastre um Novo Colaborador</h1>
+<h1 class="form-titulo">Atualizar dados do Colaborador</h1>
 <div class="error">
     <div class="container">
         <?= validation_errors(); ?>
@@ -13,32 +20,42 @@
 
 
 
-<form action="<?= base_url('index.php/colaboradores/cadastro') ?>" method="post" class="form-colaborador">
+<form action="<?= base_url('index.php/colaboradores/atualizar/') ?><?= $colaborador->id_colaborador ?>" method="post" class="form-colaborador">
     <label for="name">Nome:</label>
-    <input type="text" placeholder="Nome" name="nome" value="<?= set_value('nome') ?>">
+    <input type="text" placeholder="Nome" name="nome" value="<?= $colaborador->nome ?>">
 
     <label for="name">E-mail:</label>
-    <input type="text" placeholder="E-mail" name="email" value="<?= set_value('email') ?>">
+    <input type="text" placeholder="E-mail" name="email" value="<?= $colaborador->email ?>">
 
     <label for="cpf">CPF:</label>
-    <input type="text" placeholder="CPF" name="cpf" value="<?= set_value('cpf') ?>">
+    <input type="text" placeholder="CPF" name="cpf" value="<?= $colaborador->cpf ?>">
 
     <label class="label-sexo"  for="sexo">Selecione o sexo:</label>
-    <select name="sexo" class="sexo" value="<?= set_value('sexo') ?>">
-        <option disabled selected>Sexo</option>
-        <option value="M">Masculino</option>
-        <option value="F">Feminino</option>
+    <select name="sexo" class="sexo">
+        <option value="M" <?= $colaborador->sexo === 'M'? 'selected': '' ?>>Masculino</option>
+        <option value="F" <?= $colaborador->sexo === 'F'? 'selected': '' ?>>Feminino</option>
     </select>
 
     <label class="label-empresa" for="empresa_id">Selecione a Empresa:</label>
     <select name="empresa_id" class="empresa-colaborar">
-        <option selected disabled >Nenhuma</option>
-        <?php foreach($empresas as $empresa): ?>
-            <option value="<?= $empresa->id_empresa ?>"><?= $empresa->nome ?></option>
-        <?php endforeach; ?>
+
+        <?php if (!$colaborador->empresa_id): ?>
+            <option disabled selected>Nenhuma</option>
+            <?php foreach($empresas as $empresa): ?>
+                <option value="<?= $empresa->id_empresa ?>"><?= $empresa->nome ?></option>
+            <?php endforeach; ?>
+        <?php endif; ?>
+        
+        <!-- Se o colaborador já tem uma empresa cadastrada poderá trocar para outra empresa -->
+        <?php if ($colaborador->empresa_id): ?>
+            <?php foreach($empresas as $empresa): ?>
+                <option  value="<?= $empresa->id_empresa ?>" <?= $colaborador->empresa($colaborador->empresa_id)[0]->nome === $empresa->nome ?'selected':''?>><?= $empresa->nome ?></option>
+            <?php endforeach; ?>
+        <?php endif; ?>
+
     </select>
 
-    <input type="submit" value="Cadastrar" >
+    <input type="submit" value="Atualizar" >
 </form>
     
 

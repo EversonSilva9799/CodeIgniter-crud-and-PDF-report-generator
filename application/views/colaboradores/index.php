@@ -5,9 +5,15 @@
 ?>
 
 <h1 class="titulo-empresas">Colaboradores</h1>
+
+<?php 
+    $this->load->view('components/alerts');
+?>
+
+
 <div class="container">
-    <a href="/colaboradores/cadastro" class="btn btn-cadastro">Novo Colaborador</a>
-    <a href="/colaboradores/relatorio" class="btn btn-relatorio">Gerar Relatório</a>
+    <a href="<?= base_url('index.php/colaboradores/cadastro') ?>" class="btn btn-cadastro">Novo Colaborador</a>
+    <a href="<?= base_url('index.php/colaboradores/relatorio') ?>" class="btn btn-relatorio">Gerar Relatório</a>
 </div>
 
 <div class="wrap">
@@ -26,13 +32,13 @@
 
             <?php foreach($colaboradores as $colaborador): ?>
                 <tr>
-                    <td><?= $colaborador->nome ?></td>
+                    <td><a href="<?= base_url('index.php/colaboradores/') ?><?= $colaborador->id_colaborador ?>"><?= $colaborador->nome ?></a></td>
                     <td><?= $colaborador->email ?></td>
                     <td><?= $colaborador->cpf ?></td>
                     <td><?= $colaborador->sexo == "M" ? "Masculino" : "Feminino" ?></td>
                     <td>
-                        <a href="" class="btn btn-alterar">Alterar</a>
-                        <a href="/colaboradores/excluir/<?= $colaborador->id_colaborador ?>" class="btn btn-excluir">Excluir</a>
+                        <a href="<?= base_url('index.php/colaboradores/atualizar/') ?><?= $colaborador->id_colaborador ?>" class="btn btn-alterar">Alterar</a>
+                        <a href="<?= base_url('index.php/colaboradores/excluir/') ?><?= $colaborador->id_colaborador ?>" class="btn btn-excluir">Excluir</a>
                     </td>
                 </tr>
             <?php endforeach; ?>  
@@ -64,7 +70,7 @@
     .empresas {
         font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
         border-collapse: collapse;
-        min-width: 800px;
+        min-width: 1000px;
         width: 100%;
         
     }
@@ -126,16 +132,20 @@
         margin-bottom: 20px;
     }
 
-    @media only screen and (max-width: 780px) {
+    @media only screen and (max-width: 700px) {
 
         .titulo-empresas {
-            font-size: 1.8em;
+            font-size: 2em;
         }
 
-        .grid-6 {
-            width: calc(100% - 40px);
-        }
+        .btn-cadastro, .btn-relatorio {
+        display: block;
+        margin: 0 auto 5px auto;
+        width: calc(100% - 20px) !important;
+        text-align: center;
+}
     }
+
 
 
 </style>

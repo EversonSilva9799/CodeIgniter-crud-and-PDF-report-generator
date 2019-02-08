@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'home';
-$route['404_override'] = '';
+$route['404_override'] = 'error404';
 $route['translate_uri_dashes'] = FALSE;
 
 
@@ -58,11 +58,13 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['empresas']['GET'] = 'empresas/index';
 $route['empresas/(:num)']['GET'] = 'empresas/show/$1';
+$route['empresas/atualizar/(:num)'] = 'empresas/update/$1';
 $route['empresas/excluir/(:num)'] = 'empresas/delete/$1';
 
-$route['colaboradores']['GET'] = 'colaboradores/index';
+$route['projeto-codeigniter/colaboradores']['GET'] = 'colaboradores/index';
 $route['colaboradores']['POST'] = 'colaboradores/create';
 $route['colaboradores/(:num)']['GET'] = 'colaboradores/show/$1';
+$route['colaboradores/atualizar/(:num)']= 'colaboradores/update/$1';
 $route['colaboradores/excluir/(:num)']= 'colaboradores/delete/$1';
 
 $route['empresas/relatorio']['GET'] = 'empresasrelatorio';

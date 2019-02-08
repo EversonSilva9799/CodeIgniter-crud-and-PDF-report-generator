@@ -1,13 +1,19 @@
 <?php 
     $this->load->view('template/head');
     $this->load->view('template/header');
+   
 
 ?>
 
 <h1 class="titulo-empresas">Empresas</h1>
+
+<?php 
+    $this->load->view('components/alerts');
+?>
+
 <div class="container">
-    <a href="/empresas/cadastro" class="btn btn-cadastro">Nova Empresa</a>
-    <a href="/empresas/relatorio" class="btn btn-relatorio">Gerar Relatório</a>
+    <a href="<?= base_url('index.php/empresas/cadastro') ?>" class="btn btn-cadastro">Nova Empresa</a>
+    <a href="<?= base_url('index.php/empresas/relatorio') ?>" class="btn btn-relatorio">Gerar Relatório</a>
 </div>
 
 <div class="wrap">
@@ -29,8 +35,8 @@
                     <td><?=  $empresa->cnpj ?></td>
                     <td><?=  $empresa->email ?></td>
                     <td>
-                        <a href="/empresas/editar/<?= $empresa->id_empresa?>" class="btn btn-alterar">Alterar</a>
-                        <a href="/empresas/excluir/<?= $empresa->id_empresa?>" class="btn btn-excluir">Excluir</a>
+                        <a href="<?= base_url('index.php/empresas/atualizar/') ?><?= $empresa->id_empresa?>" class="btn btn-alterar">Alterar</a>
+                        <a href="<?= base_url('index.php/empresas/excluir/') ?><?= $empresa->id_empresa?>" class="btn btn-excluir">Excluir</a>
                     </td>
                 </tr>
 
@@ -108,6 +114,7 @@
         display: inline-block;
         width: 150px !important;
         margin-bottom: 20px;
+        
  
     }
 
@@ -126,6 +133,31 @@
     .page {
         margin-bottom: 20px;
     }
+
+    @media only screen and (max-width: 700px) {
+
+        .titulo-empresas {
+            font-size: 2em;
+        }
+
+        .btn-cadastro, .btn-relatorio {
+            display: block;
+            margin: 0 auto 5px auto;
+            width: calc(100% - 20px) !important;
+            text-align: center;
+        }
+    }
+
+    @media only screen and (min-width: 701px) and (max-width: 980px) {
+        .btn-cadastro, .btn-relatorio {
+            display: block;
+            margin: 0 auto 5px auto;
+            width: calc(50%) !important;
+            text-align: center;
+        }
+    }
+
+
 
 
 </style>

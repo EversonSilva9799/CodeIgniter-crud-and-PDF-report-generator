@@ -15,9 +15,15 @@ class ColaboradoresRelatorio extends CI_Controller {
         $html = $this->load->view('colaboradores/relatorio', ['colaboradores' => $colaboradores], TRUE);
         $mpdf->SetFooter('{PAGENO}');
         $mpdf->writeHTML($html);
-        $mpdf->SetProtection(array(), 'UserPassword', '');
+        //$mpdf->SetProtection(array(), 'UserPassword', '');
         $filename = "Relatório dos Colaboradores ". date("d/m/y - G:i:s").".pdf"; 
-        $mpdf->Output($filename, "I"); 
+        $mpdf->Output($filename, "I");
+            
+        
+
+       
+            
+        
     }
 
    

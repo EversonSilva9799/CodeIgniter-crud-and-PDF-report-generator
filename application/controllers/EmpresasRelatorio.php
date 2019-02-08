@@ -16,9 +16,15 @@ class EmpresasRelatorio extends CI_Controller {
         $html = $this->load->view('empresas/relatorio', ['empresas' => $empresas], TRUE);
         $mpdf->SetFooter('{PAGENO}');
         $mpdf->writeHTML($html);
-        $mpdf->SetProtection(array(), 'UserPassword', '');
+        //$mpdf->SetProtection(array(), 'UserPassword', '');
         $filename = "Relatório das Empresas ". date("d/m/y - G:i:s").".pdf"; 
-        $mpdf->Output($filename, "I"); 
+        print_r($mpdf->Output($filename, "D"));
+        
+        
+           
+        
+           
+        
     }
 
     

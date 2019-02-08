@@ -10,7 +10,7 @@
 		<h1 class="grid-12 options-titulo">Bem vindo ao <br>Painel Administrativo</h1>
 		<ul>
 			
-			<a href="/empresas">
+			<a href="<?= base_url('index.php/empresas') ?>">
 				<li class="grid-6 options-item">
 					<h2 class="box">Empresas</h2>
 					<h2 class="total">n° <?= $totalEmpresas ?></h2>
@@ -18,7 +18,7 @@
 				</li>
 			</a>
 
-			<a href="/colaboradores">
+			<a href="<?= base_url('index.php/colaboradores') ?>">
 				<li class="grid-6 options-item">
 					<h2 class="box" >Colaboradores</h2>
 					<h2 class="total">n° <?= $totalColaboradores ?></h2>

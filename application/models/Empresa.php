@@ -17,10 +17,15 @@ class Empresa extends CI_Model
         return $empresa->custom_row_object(0, 'Empresa');
     }
 
-    public function getAll($per_page, $page)
+    public function getAll()
     {
-        return $empresas = $this->db->get($this->table, $per_page, $page)->result();
+        return $empresas = $this->db->get($this->table)->result();
     
+    }
+
+    public function getPaginate($per_page, $page)
+    {
+        return $this->db->get($this->table, $per_page, $page)->result();
     }
 
     public function delete($id)
@@ -36,6 +41,17 @@ class Empresa extends CI_Model
     public function update(array $data, $id)
     {
         return $this->db->update($this->table, $data, ['id_empresa' => $id]);
+    }
+
+    public function validaForm()
+    {
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('nome', 'Name', 'required|min_length[1]');
+        $this->form_validation->set_rules('cnpj', 'CNPJ', 'required');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+
+        return $this->form_validation->run();
     }
 
     /**

@@ -25,7 +25,8 @@ date_default_timezone_set('America/Sao_Paulo');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost';
+$config['base_url'] = 'http://localhost/projeto-codeigniter/';
+
 
 /*
 |--------------------------------------------------------------------------
@@ -327,7 +328,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = 'dsf78sd7g98df798h79fg7hgfdfxcvxcv1';
 
 /*
 |--------------------------------------------------------------------------

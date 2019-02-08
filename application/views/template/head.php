@@ -8,8 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Admin</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="<?= base_url("assets/css/style.css") ?> ">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700,700i" rel="stylesheet"> -->
 
   </head>
 
