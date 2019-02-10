@@ -44,6 +44,14 @@ class Colaborador extends CI_Model
         return $this->db->update($this->table, $data, ['id_colaborador' => $id]);
     }
 
+    public function getTotal()
+    {
+        return $this->db->count_all($this->table);
+    }
+
+    /**
+     * Valida o formulário de cadastro e atualização de novas empresas
+     */
     public function validaForm()
     {
         $this->load->library('form_validation');

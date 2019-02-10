@@ -6,9 +6,10 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-        $this->load->database();
-        $totalEmpresas = $this->db->count_all('empresas');
-        $totalColaboradores= $this->db->count_all('colaboradores');
+        $this->load->model(['empresa', 'colaborador']);
+
+        $totalEmpresas = $this->empresa->getTotal();
+        $totalColaboradores= $this->colaborador->getTotal();
         
 		$this->load->view('home', [
             'totalEmpresas' => $totalEmpresas,

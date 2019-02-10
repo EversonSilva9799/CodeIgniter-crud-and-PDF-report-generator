@@ -3,7 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Colaboradores extends CI_Controller {
 
-
+    /**
+     * Pega todos os colaboradores no banco
+     */
     public function index($page=0)
     {
         $this->load->model('colaborador');
@@ -25,6 +27,9 @@ class Colaboradores extends CI_Controller {
         ]);
     }
 
+    /**
+     * Exibe detalhes de um colaborador específico
+     */
     public function show($id)
     {
         $this->load->model('colaborador');
@@ -47,11 +52,16 @@ class Colaboradores extends CI_Controller {
 
     }
 
+    /**
+     * Cadastra um colaborador no sistema
+     */
     public function cadastro()
     {   
         
         $this->load->helper(['form', 'url']);
         $this->load->model(['colaborador', 'empresa']);
+
+  
         
         //Pegando a empresa para o colaborador poder escolher uma
         $empresas = $this->empresa->getAll();
@@ -79,6 +89,11 @@ class Colaboradores extends CI_Controller {
 
     }
 
+    
+
+    /*
+    * Atualiza um colaborador do sistema
+    */
     public function update($id)
     {
         $this->load->helper(['form', 'url']);
@@ -117,12 +132,13 @@ class Colaboradores extends CI_Controller {
         }
     }
 
+
+    /*
+     * Deleta um colaborador do sistema 
+     */
     public function delete($id)
     {
-
         $this->load->model('colaborador');
-
-        
 
         $deleted = $this->colaborador->delete($id);
 

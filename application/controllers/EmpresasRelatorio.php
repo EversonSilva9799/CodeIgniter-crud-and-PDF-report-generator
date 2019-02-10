@@ -18,15 +18,6 @@ class EmpresasRelatorio extends CI_Controller {
         $mpdf->writeHTML($html);
         //$mpdf->SetProtection(array(), 'UserPassword', '');
         $filename = "Relatório das Empresas ". date("d/m/y - G:i:s").".pdf"; 
-        print_r($mpdf->Output($filename, "D"));
-        
-        
-           
-        
-           
-        
-    }
-
-    
-	
+        $mpdf->Output($filename, "D");             
+    }  	
 }

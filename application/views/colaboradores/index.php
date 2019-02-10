@@ -143,7 +143,16 @@
         margin: 0 auto 5px auto;
         width: calc(100% - 20px) !important;
         text-align: center;
-}
+        }
+    }
+
+    @media only screen and (min-width: 701px) and (max-width: 980px) {
+        .btn-cadastro, .btn-relatorio {
+            display: block;
+            margin: 0 auto 5px auto;
+            width: calc(50%) !important;
+            text-align: center;
+        }
     }
 
 

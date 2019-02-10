@@ -40,7 +40,7 @@ class Empresas extends CI_Controller {
         $empresa = $this->empresa->get($id);
 
         if (!$empresa) {
-            $this->session->set_flashdata('error', 'Não foi possível realizar esta ação');
+            $this->session->set_flashdata('error', 'Não foi possível realizar esta ação. Provavelmente a Empresa não existe');
             redirect(base_url('index.php/empresas'));
         }
 
@@ -113,8 +113,10 @@ class Empresas extends CI_Controller {
             }
         } 
         else {
-            $this->load->view('error404/index.php');
+            $this->session->set_flashdata('error', 'Não foi possível realizar esta ação. Provavelmente a Empresa não existe');
+            redirect(base_url('index.php/empresas'));
         }
+        
     }
 
     /**
